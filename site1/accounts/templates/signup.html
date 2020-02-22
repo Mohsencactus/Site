@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <title>Sign up</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'accounts/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+ 
+<body>
+    <div class="top">
+              <a href="/">صفحه اصلی <i class="fa fa-fw fa-home"></i></a>
+              <a href="/accounts/login">ورود <i class="fa fa-fw fa-user"></i></a>
+    </div>  
+    <div class="bgimg">
+        <div class="center">
+            <div class="box"> 
+                <h1>ثبت نام</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group" style="text-align: right;">
+                        <label for="exampleInputPassword1"><strong>{{ field.label }}</strong></label>
+                        {% if field.html_name ==  'password' or field.html_name ==  'password2' %}
+                        <input class="form-control" style="text-align: right; padding: 1%" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="password" /> 
+                        {{ field.errors }}
+                        {% else %}
+                        <input class="form-control" style="text-align: right; padding: 1%;" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="text" /> 
+                        {{ field.errors }}
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" style="font-weight: bold; padding: 10px 10px;" class="btn btn-primary">ثبت نام</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+          <div style="float: right;">
+              <p style="text-align: right;"><b>
+                  <i class="fa fa-telegram" aria-hidden="true"></i>
+                  ما را در <a href="https://t.me/msn_cactus">تلگرام</a> دنبال کنید<br>
+                  xxx :آدرس<br>
+                  xxx :تلفن<br>
+              </b></p>
+          </div>
+          <div style="float: left;">
+              <p style="text-align: left;"><b>
+              Created by: Mohsen Nasiri<br>
+              Email: nasirimohsen16@gmail.com<br>
+              </b></p>
+          </div>
+    </div>
+</body>
+
+<!--
+Created by: Msn_cactus
+Instagram: msn_nasiri
+Telegram: @msn_cactus
+email:  mohsennasiri8@gmail.com
+-->
+</html>

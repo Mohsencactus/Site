@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <title>Account</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'accounts/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>  
+    <div class="top">
+              <a href="/">صفحه اصلی <i class="fa fa-fw fa-home"></i></a>
+              <a href="/accounts/logout">خروج از حساب <i class="fa fa-fw fa-user"></i></a>
+    </div>  
+    <div class="bgimg">
+        <div class="center">
+            <div class="box">
+                <h1 style="font-size: xx-large; text-align: center; "><strong> رشته مورد نظر خود را انتخاب کنید</strong></h1> 
+                {% for subject in subjects %}
+                <div class ="box2">
+                    <input id="{{subject.index}}" type="submit"  onclick="myFunction()" value="{{subject.name}}">
+                    <div id="{{subject.name}}" style="display: none; overflow: auto;">
+                        <table class="table table-striped table-hover" style="background-color: white; border-radius: 25px;">
+                          <tbody>                           
+                              {%for rows in subject.content%}    
+                                  <tr>
+                                      {% if forloop.first %}
+                                        {%for row in rows%}
+                                        <td class=""><strong>{{row}}</strong></td>
+                                        {% endfor %}
+                                      {% else %}
+                                      {%for row in rows%}
+                                          {% if forloop.first %}
+                                              <td class=""><strong>{{row}}</strong></td>
+                                          {% else %}
+                                              <td class="">{{row}}</td>
+                                          {% endif %}
+                                      {% endfor %}
+                                      {% endif %}
+                                  </tr>
+                              {% endfor %} 
+                          </tbody>
+                        </table>
+                        <input id="{{subject.index}}" type="submit"  onclick="myFunction()" value="{{subject.name}}">
+                    </div>                    
+                    <script>
+                      document.getElementById("{{subject.index}}").onclick = function(){
+                      var x = document.getElementById("{{subject.name}}");
+                        if (x.style.display === "none") {
+                          x.style.display = "block";
+                        } else {
+                          x.style.display = "none";
+                        }
+                      };
+                    </script>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+          <div style="float: right;">
+              <p style="text-align: right;"><b>
+                  <i class="fa fa-telegram" aria-hidden="true"></i>
+                  ما را در <a href="https://t.me/msn_cactus">تلگرام</a> دنبال کنید<br>
+                  xxx :آدرس<br>
+                  xxx :تلفن<br>
+              </b></p>
+          </div>
+          <div style="float: left;">
+              <p style="text-align: left;"><b>
+              Created by: Mohsen Nasiri<br>
+              Email: nasirimohsen16@gmail.com<br>
+              </b></p>
+          </div>
+    </div>
+</body>
+
+<!--
+Created by: Msn_cactus
+Instagram: msn_nasiri
+Telegram: @msn_cactus
+email:  mohsennasiri8@gmail.com
+-->
+</html>
